@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teşvik Atlası</title>
+<meta name="description" content="2009–2023 yatırım teşvik belgelerinde firma, il ve sektör bazında anında arama.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#15302A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Teşvik Atlası">
+<link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="icon" href="icon-32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#EEF1EC;--sheet:#FBFCFA;--ink:#15302A;--muted:#5B6E67;--line:#CBD5CF;--inp:#F4F7F3;--acc:#B8862B;--acc2:#2F6B57;--bad:#A8322A;--bar:#2F6B57;--bar2:#D9B56B;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#101816;--sheet:#17221F;--ink:#E4ECE7;--muted:#95A8A0;--line:#2C3B36;--inp:#1D2A26;--acc:#D9A441;--acc2:#5FA88C;--bad:#E0675D;--bar:#5FA88C;--bar2:#8C7440}}
+:root[data-theme="dark"]{--paper:#101816;--sheet:#17221F;--ink:#E4ECE7;--muted:#95A8A0;--line:#2C3B36;--inp:#1D2A26;--acc:#D9A441;--acc2:#5FA88C;--bad:#E0675D;--bar:#5FA88C;--bar2:#8C7440}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:1280px;margin:0 auto;padding:14px 14px 48px}
+h1,h2{font-family:Newsreader,Georgia,serif;font-weight:600;margin:0;line-height:1.15}
+h1{font-size:clamp(1.4rem,4vw,2rem)} h2{font-size:1.05rem;margin-bottom:8px}
+.sub{color:var(--muted);margin:2px 0 0;font-size:.88rem}
+.layout{display:grid;gap:14px;margin-top:14px}
+.layout>*{min-width:0}
+select{max-width:100%}
+@media (min-width:980px){.layout{grid-template-columns:290px minmax(0,1fr)}}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:14px}
+aside .card{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px)}
+label{display:block;font-size:.78rem;color:var(--muted);margin:10px 0 3px}
+input,select,textarea{box-sizing:border-box;width:100%;font:inherit;color:var(--ink);background:var(--inp);border:1px solid var(--line);border-radius:6px;padding:8px 9px}
+textarea{min-height:90px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chip{font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer;background:var(--inp);user-select:none}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+button{font:inherit;cursor:pointer;border-radius:6px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:7px 11px}
+button.primary{background:var(--ink);color:var(--sheet);border-color:var(--ink);font-weight:700}
+button:disabled{opacity:.5;cursor:default}
+.search{font-size:1rem;padding:11px 12px}
+.toggle{font-size:.8rem;color:var(--acc2);background:none;border:0;padding:4px 0;text-decoration:underline}
+details.f summary{cursor:pointer;font-weight:700;list-style:none}
+details.f summary::after{content:" ▾";color:var(--muted)}
+@media (min-width:980px){details.f summary{pointer-events:none}details.f summary::after{content:""}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kpi{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpi b{display:block;font-family:Newsreader,Georgia,serif;font-size:1.55rem;font-weight:600;line-height:1.1;margin-top:2px}
+.kpi span{color:var(--muted);font-size:.8rem}
+.charts{display:grid;gap:12px;margin-top:12px}
+.charts>*{min-width:0}
+@media (min-width:760px){.charts{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)}}
+.hb{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;font-size:.8rem;align-items:center}
+.hb .lab{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.hb .lab:hover{color:var(--acc2);text-decoration:underline}
+.hb .track{grid-column:1/-1;height:6px;background:var(--inp);border-radius:3px;margin-bottom:6px}
+.hb .fill{height:100%;background:var(--bar);border-radius:3px}
+.hb .v{color:var(--muted);text-align:right}
+svg text{fill:var(--muted);font-size:10px;font-family:Manrope,system-ui,sans-serif}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:12px}
+.scroll{overflow-x:auto;margin-top:8px;border:1px solid var(--line);border-radius:10px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:.84rem}
+th{position:sticky;top:0;background:var(--inp);text-align:left;font-weight:700;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer}
+th.num,td.num{text-align:right}
+th[aria-sort]::after{content:" ↓";color:var(--acc)} th[aria-sort="ascending"]::after{content:" ↑"}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr{cursor:pointer} tbody tr:hover{background:var(--inp)}
+td.firma{max-width:340px}
+.st{font-size:.72rem;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.st.ip{color:var(--bad);border-color:var(--bad)} .st.kp{color:var(--acc2);border-color:var(--acc2)}
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px}
+.muted{color:var(--muted)}
+#loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--paper);z-index:20;text-align:center}
+.spin{width:36px;height:36px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;margin:0 auto 12px}
+@keyframes s{to{transform:rotate(360deg)}}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--sheet);color:var(--ink);max-width:720px;width:calc(100% - 24px);padding:0;max-height:88vh}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dh{position:sticky;top:0;background:var(--sheet);padding:14px 16px;border-bottom:1px solid var(--line);display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+.db{padding:6px 16px 16px}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:4px 12px;font-size:.88rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+@media (max-width:560px){.kv{grid-template-columns:1fr}.kv dd{margin-bottom:6px}}
+.note{font-size:.78rem;color:var(--muted);margin-top:14px;max-width:80ch}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+</style>
+</head>
+<body>
+<div id="loading" role="status"><div><div class="spin"></div><img src="logo.svg" alt="" width="64" height="64" style="border-radius:16px;display:block;margin:0 auto 14px"><strong>Teşvik Atlası açılıyor…</strong><div class="muted" id="loadMsg">Veri açılıyor</div></div></div>
+<main>
+<header>
+  <h1 style="display:flex;align-items:center;gap:10px"><img src="logo.svg" alt="" width="36" height="36" style="border-radius:9px;flex:none">Teşvik Atlası</h1>
+  <p class="sub">2009–2023 arasında Resmi Gazete'de ilan edilen 107 bin yatırım teşvik belgesinde firma, il ve sektör bazında anında arama.</p>
+</header>
+<div class="layout">
+<aside>
+  <div class="card">
+    <label for="q" style="margin-top:0">Firma, belge no, kapasite veya adres</label>
+    <input id="q" class="search" type="search" placeholder="ör. dicle tarım veya 528611" autocomplete="off">
+    <button class="toggle" id="bulkBtn" aria-expanded="false">Toplu firma arama</button>
+    <div id="bulkBox" hidden>
+      <textarea id="bulk" placeholder="Her satıra bir firma adı. Satırlardan herhangi biriyle eşleşen belgeler listelenir."></textarea>
+    </div>
+    <details class="f" id="filt" open>
+      <summary>Filtreler</summary>
+      <label for="fIl">Yatırım yeri ili</label><select id="fIl"></select>
+      <label for="fIlce">İlçe</label><select id="fIlce"></select>
+      <label for="fAna">Ana sektör</label><select id="fAna"></select>
+      <label for="fSek">Alt sektör</label><select id="fSek"></select>
+      <label for="fCins">Yatırım cinsi</label><select id="fCins"></select>
+      <label for="fDur">Belge durumu</label><select id="fDur"></select>
+      <label for="fSerm">Sermaye türü</label><select id="fSerm"></select>
+      <label>Belge yılı</label>
+      <div class="row2"><select id="fY1" aria-label="Başlangıç yılı"></select><select id="fY2" aria-label="Bitiş yılı"></select></div>
+      <label>Asgari tutarlar</label>
+      <div class="row2"><input id="fMinTL" inputmode="numeric" placeholder="Sabit yatırım TL" aria-label="Asgari sabit yatırım"><input id="fMinIst" inputmode="numeric" placeholder="İstihdam" aria-label="Asgari istihdam"></div>
+      <label>Destek unsurları (hepsi olmalı)</label>
+      <div class="chips" id="fFlags"></div>
+      <div style="margin-top:12px"><button id="reset">Filtreleri temizle</button></div>
+    </details>
+  </div>
+</aside>
+<section>
+  <div class="kpis">
+    <div class="kpi"><span>Belge sayısı</span><b id="kN">–</b></div>
+    <div class="kpi"><span>Toplam sabit yatırım</span><b id="kTL">–</b></div>
+    <div class="kpi"><span>Toplam istihdam</span><b id="kIst">–</b></div>
+    <div class="kpi"><span>Firma sayısı</span><b id="kF">–</b></div>
+    <div class="kpi"><span>İptal oranı</span><b id="kIp">–</b></div>
+  </div>
+  <div class="charts">
+    <div class="card"><h2>Yıllara göre belge sayısı</h2><div id="cYear"></div></div>
+    <div class="card"><h2 id="cGeoT">İller</h2><div id="cGeo" class="hb"></div></div>
+    <div class="card"><h2>Sektörler</h2><div id="cSek" class="hb"></div></div>
+  </div>
+  <div class="tools">
+    <span class="muted" id="info"></span>
+    <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="muted" id="dlMsg" aria-live="polite"></span><button class="primary" id="csv">Sonuçları Excel'e aktar (CSV)</button></span>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr>
+        <th data-s="no">Belge no</th><th data-s="bt" aria-sort="descending">Belge tarihi</th><th data-s="firma">Firma</th><th data-s="il">İl / ilçe</th>
+        <th data-s="sek">Sektör</th><th data-s="cins">Cinsi</th><th data-s="sab" class="num">Sabit yatırım (TL)</th><th data-s="ist" class="num">İstihdam</th><th data-s="dur">Durum</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="pager"><button id="prev">Önceki</button><span id="pg" class="muted"></span><button id="next">Sonraki</button></div>
+  <p class="note">Kaynak: Resmi Gazete'de ilan edilen yatırım teşvik belgelerinin derlenmiş listesi. Revize edilen belgelerin güncel bilgileri yer almaz; 2015 Ekim sonrası bazı illerde ilçe ve belge durumu, 500000 ile başlayan E-TUYS belgelerinde detay bilgileri eksiktir. Tutarlar belge tarihindeki nominal TL'dir. 2023 Eylül listesinden gelen yaklaşık 5 bin belgede belge no ve tutar bilgisi yoktur; durum alanında destek türü (ör. BÖLGESEL) yer alır. Bir grafik çubuğuna tıklayınca o değer filtre olarak uygulanır.</p>
+</section>
+</div>
+</main>
+<dialog id="dlg"><div class="dh"><div><h2 id="dT" style="margin:0"></h2><div class="muted" id="dS"></div></div><button id="dClose" aria-label="Kapat">Kapat</button></div><div class="db"><dl class="kv" id="dKv"></dl></div></dialog>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=n=>n==null?"":Math.round(n).toLocaleString("tr-TR");
+const short=n=>{n=n||0;const a=Math.abs(n);return a>=1e9?(n/1e9).toLocaleString("tr-TR",{maximumFractionDigits:1})+" milyar":a>=1e6?(n/1e6).toLocaleString("tr-TR",{maximumFractionDigits:1})+" milyon":fmt(n)};
+const dstr=d=>{if(d==null)return"";const x=new Date(d*864e5);return String(x.getUTCDate()).padStart(2,"0")+"."+String(x.getUTCMonth()+1).padStart(2,"0")+"."+x.getUTCFullYear()};
+const TRMAP={"ç":"c","ğ":"g","ı":"i","ö":"o","ş":"s","ü":"u","â":"a","î":"i","û":"u"};
+const norm=s=>String(s||"").replace(/İ/g,"i").replace(/I/g,"ı").toLowerCase().replace(/[çğıöşüâîû]/g,c=>TRMAP[c]).replace(/[^a-z0-9]+/g," ").trim();
+
+let D,C,N,YEAR,NF,NX,ANA,ANAL;
+async function load(){
+  const res=await fetch("data.json.gz"); if(!res.ok) throw new Error("veri dosyası bulunamadı");
+  $("loadMsg").textContent="Sıkıştırma açılıyor";
+  const txt=await new Response((await res.blob()).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  const data=JSON.parse(txt); D=data.dict; C=data.cols; N=data.n; window.FL=data.flags;
+  $("loadMsg").textContent="Arama dizini hazırlanıyor";
+  await new Promise(r=>setTimeout(r,0));
+  YEAR=new Int16Array(N); NF=new Array(N); NX=new Array(N);
+  for(let i=0;i<N;i++){ const d=C.bt[i]; YEAR[i]=d==null?0:new Date(d*864e5).getUTCFullYear(); NF[i]=" "+norm(C.firma[i])+" "; NX[i]=" "+norm(C.no[i]+" "+C.kap[i]+" "+C.adres[i])+" "; }
+  const anaOf=s=>{ if(!s) return "";
+    const p=s.includes(" - ")?s.split(" - ")[0]:s;
+    const t=p+" | "+s;
+    if(/^İMALAT|İMALAT|DEMİR|APRELENMES|İPLİK|DOKUMACILI/.test(p)) return "İMALAT";
+    if(/ELEKTRİK|ENERJİ|GAZ VE SU|BUHAR/.test(p)) return "ENERJİ";
+    if(/MADEN|TAŞOCAK|OCAKÇILI/.test(p)) return "MADENCİLİK";
+    if(/TARIM|BALIK|YETİŞTİR|HAYVAN|ORMAN|FİDAN/.test(p)) return "TARIM";
+    if(/HİZMET|OTEL|LOKANTA|EĞİTİM|SAĞLIK|TİCARET|ULAŞTIRMA|GAYRİMENKUL|KAMU|DEPOLAMA|ÖĞRETİM/.test(p)) return "HİZMETLER";
+    if(/İMALAT/.test(s)) return "İMALAT";
+    return "HİZMETLER"; };
+  ANAL=[...new Set(D.sek.map(anaOf).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"tr"));
+  ANA=new Int16Array(D.sek.length); D.sek.forEach((s,i)=>ANA[i]=ANAL.indexOf(anaOf(s)));
+  init(); $("loading").remove();
+}
+
+const S={q:"",bulk:"",il:-1,ilce:-1,ana:-1,sek:-1,cins:-1,dur:-1,serm:-1,y1:0,y2:9999,minTL:0,minIst:0,flags:0,sort:"bt",dir:-1,page:0};
+const PAGE=50; let RES=[];
+function counts(key){ const c=new Map(); const a=C[key]; for(let i=0;i<N;i++) c.set(a[i],(c.get(a[i])||0)+1); return c; }
+function fillSel(el,key,label,onlyIdx){
+  const c=counts(key); const ids=[...c.keys()].filter(i=>D[key][i]!=="" && (!onlyIdx||onlyIdx.has(i)));
+  ids.sort((a,b)=>D[key][a].localeCompare(D[key][b],"tr"));
+  el.innerHTML=`<option value="-1">${label}</option>`+ids.map(i=>`<option value="${i}">${esc(D[key][i])} (${c.get(i).toLocaleString("tr-TR")})</option>`).join("");
+}
+function fillIlce(){
+  const set=new Set(); if(S.il>=0){ for(let i=0;i<N;i++) if(C.il[i]===S.il) set.add(C.ilce[i]); }
+  if(S.il<0){ $("fIlce").innerHTML=`<option value="-1">Önce il seçin</option>`; $("fIlce").disabled=true; return; }
+  $("fIlce").disabled=false; fillSel($("fIlce"),"ilce","Tüm ilçeler",set);
+}
+function fillSek(){
+  const set=new Set(); D.sek.forEach((s,i)=>{ if(s && (S.ana<0||ANA[i]===S.ana)) set.add(i); });
+  fillSel($("fSek"),"sek","Tüm alt sektörler",set);
+}
+function init(){
+  fillSel($("fIl"),"il","Tüm iller"); fillIlce();
+  $("fAna").innerHTML=`<option value="-1">Tüm ana sektörler</option>`+ANAL.map((s,i)=>`<option value="${i}">${esc(s)}</option>`).join("");
+  fillSek(); fillSel($("fCins"),"cins","Tüm yatırım cinsleri"); fillSel($("fDur"),"dur","Tüm durumlar"); fillSel($("fSerm"),"serm","Tüm sermaye türleri");
+  $("fDur").insertAdjacentHTML("beforeend",`<option value="-2">Durum bilgisi boş</option>`);
+  let ys=[...new Set(YEAR)].filter(Boolean).sort();
+  $("fY1").innerHTML=ys.map(y=>`<option ${y===ys[0]?"selected":""}>${y}</option>`).join("");
+  $("fY2").innerHTML=ys.map(y=>`<option ${y===ys[ys.length-1]?"selected":""}>${y}</option>`).join("");
+  $("fFlags").innerHTML=FL.map((f,i)=>`<span class="chip" role="button" tabindex="0" aria-pressed="false" data-b="${i}">${f}</span>`).join("")+
+    `<span class="chip" role="button" tabindex="0" aria-pressed="false" data-b="vi">Vergi indirimi</span><span class="chip" role="button" tabindex="0" aria-pressed="false" data-b="fz">Faiz desteği</span>`;
+  if(matchMedia("(max-width:979px)").matches) $("filt").open=false;
+  bind(); run();
+}
+let t; const deb=f=>{clearTimeout(t);t=setTimeout(f,160)};
+function bind(){
+  $("q").addEventListener("input",e=>{S.q=e.target.value;deb(run)});
+  $("bulk").addEventListener("input",e=>{S.bulk=e.target.value;deb(run)});
+  $("bulkBtn").onclick=()=>{const h=$("bulkBox").hidden;$("bulkBox").hidden=!h;$("bulkBtn").setAttribute("aria-expanded",h);if(!h){S.bulk="";run()}else $("bulk").focus()};
+  const sel=(id,k,after)=>$(id).addEventListener("change",e=>{S[k]=+e.target.value;if(after)after();run()});
+  sel("fIl","il",()=>{S.ilce=-1;fillIlce()}); sel("fIlce","ilce"); sel("fAna","ana",()=>{S.sek=-1;fillSek()}); sel("fSek","sek");
+  sel("fCins","cins"); sel("fDur","dur"); sel("fSerm","serm"); sel("fY1","y1"); sel("fY2","y2");
+  const numIn=(id,k)=>$(id).addEventListener("input",e=>{S[k]=+String(e.target.value).replace(/\D/g,"")||0;deb(run)});
+  numIn("fMinTL","minTL"); numIn("fMinIst","minIst");
+  $("fFlags").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;const on=c.getAttribute("aria-pressed")!=="true";c.setAttribute("aria-pressed",on);run()});
+  $("fFlags").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("chip")){e.preventDefault();e.target.click()}});
+  $("reset").onclick=()=>{Object.assign(S,{q:"",bulk:"",il:-1,ilce:-1,ana:-1,sek:-1,cins:-1,dur:-1,serm:-1,minTL:0,minIst:0});
+    ["q","bulk","fMinTL","fMinIst"].forEach(i=>$(i).value="");["fIl","fAna","fCins","fDur","fSerm"].forEach(i=>$(i).value="-1");
+    $("fY1").selectedIndex=0;$("fY2").selectedIndex=$("fY2").options.length-1;S.y1=+$("fY1").value;S.y2=+$("fY2").value;
+    document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));fillIlce();fillSek();run()};
+  S.y1=+$("fY1").value; S.y2=+$("fY2").value;
+  document.querySelectorAll("th[data-s]").forEach(th=>th.onclick=()=>{const k=th.dataset.s;if(S.sort===k)S.dir*=-1;else{S.sort=k;S.dir=(k==="firma"||k==="il"||k==="sek"||k==="cins"||k==="dur"||k==="no")?1:-1}
+    document.querySelectorAll("th").forEach(x=>x.removeAttribute("aria-sort"));th.setAttribute("aria-sort",S.dir>0?"ascending":"descending");sortRes();S.page=0;renderTable()});
+  $("prev").onclick=()=>{if(S.page>0){S.page--;renderTable()}}; $("next").onclick=()=>{if((S.page+1)*PAGE<RES.length){S.page++;renderTable()}};
+  $("tb").addEventListener("click",e=>{const tr=e.target.closest("tr[data-i]");if(tr)detail(+tr.dataset.i)});
+  $("tb").addEventListener("keydown",e=>{if(e.key==="Enter"){const tr=e.target.closest("tr[data-i]");if(tr)detail(+tr.dataset.i)}});
+  $("dClose").onclick=()=>$("dlg").close();
+  $("csv").onclick=exportCsv;
+}
+function run(){
+  const qt=norm(S.q).split(" ").filter(Boolean);
+  const bulk=S.bulk.split("\n").map(l=>norm(l).split(" ").filter(Boolean)).filter(a=>a.length);
+  const flagMask=[...document.querySelectorAll(".chip[aria-pressed=true]")].map(c=>c.dataset.b);
+  let fm=0,needVi=false,needFz=false; flagMask.forEach(b=>{if(b==="vi")needVi=true;else if(b==="fz")needFz=true;else fm|=1<<+b});
+  const viEmpty=D.vi.indexOf(""), fzEmpty=D.faiz.indexOf(""), durEmpty=D.dur.indexOf("");
+  const out=[];
+  for(let i=0;i<N;i++){
+    if(S.il>=0&&C.il[i]!==S.il)continue;
+    if(S.ilce>=0&&C.ilce[i]!==S.ilce)continue;
+    if(S.sek>=0){if(C.sek[i]!==S.sek)continue}else if(S.ana>=0&&ANA[C.sek[i]]!==S.ana)continue;
+    if(S.cins>=0&&C.cins[i]!==S.cins)continue;
+    if(S.dur===-2){if(C.dur[i]!==durEmpty)continue}else if(S.dur>=0&&C.dur[i]!==S.dur)continue;
+    if(S.serm>=0&&C.serm[i]!==S.serm)continue;
+    const y=YEAR[i]; if(y<S.y1||y>S.y2)continue;
+    if(S.minTL&&!((C.sab[i]||0)>=S.minTL))continue;
+    if(S.minIst&&!((C.ist[i]||0)>=S.minIst))continue;
+    if(fm&&(C.fl[i]&fm)!==fm)continue;
+    if(needVi&&C.vi[i]===viEmpty)continue; if(needFz&&C.faiz[i]===fzEmpty)continue;
+    if(qt.length){let ok=true;const f=NF[i];for(const w of qt){if(f.indexOf(" "+w)<0&&NX[i].indexOf(" "+w)<0){ok=false;break}}if(!ok)continue}
+    if(bulk.length){const f=NF[i];let any=false;for(const ws of bulk){let ok=true;for(const w of ws){if(f.indexOf(" "+w)<0){ok=false;break}}if(ok){any=true;break}}if(!any)continue}
+    out.push(i);
+  }
+  RES=out; sortRes(); S.page=0; renderAll();
+}
+function sortRes(){
+  const k=S.sort,d=S.dir,col=C[k];
+  const isDict=["il","sek","cins","dur"].includes(k);
+  RES.sort((a,b)=>{let x=col[a],y=col[b];
+    if(isDict){x=D[k][x];y=D[k][y]}
+    if(k==="no"){const nx=parseInt(x),ny=parseInt(y);if(!isNaN(nx)&&!isNaN(ny))return(nx-ny)*d}
+    if(x==null||x==="")return 1; if(y==null||y==="")return -1;
+    return (typeof x==="number"?x-y:String(x).localeCompare(String(y),"tr"))*d});
+}
+function renderAll(){
+  let tl=0,ist=0,ip=0; const firms=new Set(); const ipIdx=D.dur.indexOf("İPTAL");
+  const yc=new Map(), geo=new Map(), sek=new Map(); const geoKey=S.il>=0?"ilce":"il";
+  for(const i of RES){ tl+=C.sab[i]||0; ist+=C.ist[i]||0; if(C.dur[i]===ipIdx)ip++; firms.add(NF[i]);
+    yc.set(YEAR[i],(yc.get(YEAR[i])||0)+1); geo.set(C[geoKey][i],(geo.get(C[geoKey][i])||0)+1);
+    const sk=S.ana>=0||S.sek>=0?C.sek[i]:ANA[C.sek[i]]; sek.set(sk,(sek.get(sk)||0)+1); }
+  $("kN").textContent=RES.length.toLocaleString("tr-TR"); $("kTL").textContent=short(tl)+" TL"; $("kIst").textContent=fmt(ist);
+  $("kF").textContent=firms.size.toLocaleString("tr-TR"); $("kIp").textContent=RES.length?"%"+(ip/RES.length*100).toLocaleString("tr-TR",{maximumFractionDigits:1}):"–";
+  yearChart(yc);
+  $("cGeoT").textContent=S.il>=0?"İlçeler":"İller";
+  hbars($("cGeo"),geo,k=>D[geoKey][k]||"(boş)",k=>{if(geoKey==="il"){S.il=k;$("fIl").value=k;S.ilce=-1;fillIlce()}else{S.ilce=k;$("fIlce").value=k}run()});
+  const sekLab=S.ana>=0||S.sek>=0?(k=>D.sek[k]):(k=>ANAL[k]||"(boş)");
+  hbars($("cSek"),sek,sekLab,k=>{if(S.ana>=0||S.sek>=0){S.sek=k;$("fSek").value=k}else{S.ana=k;$("fAna").value=k;S.sek=-1;fillSek()}run()});
+  renderTable();
+}
+function hbars(el,map,lab,click){
+  const arr=[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,10); const max=arr[0]?.[1]||1;
+  el.innerHTML=arr.length?arr.map(([k,v])=>`<span class="lab" data-k="${k}" role="button" tabindex="0" title="${esc(lab(k))}">${esc(lab(k))}</span><span class="v">${v.toLocaleString("tr-TR")}</span><div class="track"><div class="fill" style="width:${v/max*100}%"></div></div>`).join(""):`<span class="muted">Sonuç yok</span>`;
+  el.onclick=e=>{const l=e.target.closest(".lab");if(l)click(+l.dataset.k)};
+  el.onkeydown=e=>{if(e.key==="Enter"){const l=e.target.closest(".lab");if(l)click(+l.dataset.k)}};
+}
+function yearChart(yc){
+  const ys=[...yc.keys()].filter(Boolean).sort(); if(!ys.length){$("cYear").innerHTML=`<span class="muted">Sonuç yok</span>`;return}
+  const W=520,H=170,pb=22,pt=14; const max=Math.max(...ys.map(y=>yc.get(y))); const bw=W/ys.length;
+  const bars=ys.map((y,i)=>{const v=yc.get(y),h=(H-pb-pt)*v/max;return `<rect x="${i*bw+bw*.15}" y="${H-pb-h}" width="${bw*.7}" height="${h}" rx="2" fill="var(--bar)"><title>${y}: ${v.toLocaleString("tr-TR")} belge</title></rect>`+
+    (ys.length<=16||i%2===0?`<text x="${i*bw+bw/2}" y="${H-7}" text-anchor="middle">${String(y).slice(2)}</text>`:"")}).join("");
+  $("cYear").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Yıllara göre belge sayısı"><text x="0" y="10">${max.toLocaleString("tr-TR")}</text>${bars}</svg>`;
+}
+function renderTable(){
+  const from=S.page*PAGE, rows=RES.slice(from,from+PAGE);
+  const ipIdx=D.dur.indexOf("İPTAL"), kpIdx=D.dur.indexOf("KAPALI");
+  $("tb").innerHTML=rows.map(i=>`<tr data-i="${i}" tabindex="0"><td>${C.no[i]?esc(C.no[i]):"<span class=muted>–</span>"}</td><td>${dstr(C.bt[i])}</td><td class="firma">${esc(C.firma[i])}</td>
+    <td>${esc(D.il[C.il[i]])}${D.ilce[C.ilce[i]]?"<br><span class=muted>"+esc(D.ilce[C.ilce[i]])+"</span>":""}</td><td>${esc(D.sek[C.sek[i]])}</td><td>${esc(D.cins[C.cins[i]])}</td>
+    <td class="num">${fmt(C.sab[i])}</td><td class="num">${fmt(C.ist[i])}</td><td>${D.dur[C.dur[i]]?`<span class="st ${C.dur[i]===ipIdx?"ip":C.dur[i]===kpIdx?"kp":""}">${esc(D.dur[C.dur[i]])}</span>`:""}</td></tr>`).join("")
+    || `<tr><td colspan="9" class="muted" style="padding:18px">Bu kriterlere uyan belge yok.</td></tr>`;
+  const pages=Math.max(1,Math.ceil(RES.length/PAGE));
+  $("pg").textContent=`${S.page+1} / ${pages.toLocaleString("tr-TR")}`; $("prev").disabled=S.page===0; $("next").disabled=S.page+1>=pages;
+  $("info").textContent=RES.length?`${(from+1).toLocaleString("tr-TR")}–${Math.min(from+PAGE,RES.length).toLocaleString("tr-TR")} arası gösteriliyor, toplam ${RES.length.toLocaleString("tr-TR")} belge`:"";
+}
+function fields(i){
+  const fl=FL.filter((f,b)=>C.fl[i]&(1<<b));
+  return [["Belge no",C.no[i]],["Sermaye türü",D.serm[C.serm[i]]],["Yabancı sermaye ülkesi",D.ulke[C.ulke[i]]],["Belge tarihi",dstr(C.bt[i])],["Müracaat / başlama",dstr(C.bas[i])],["Bitiş tarihi",dstr(C.bit[i])],
+    ["Revize tarihi",dstr(C.rev[i])],["Belge durumu",D.dur[C.dur[i]]],["Yatırım yeri",[D.il[C.il[i]],D.ilce[C.ilce[i]]].filter(Boolean).join(" / ")],["Firma adresi",C.adres[i]],
+    ["Sektör",D.sek[C.sek[i]]],["US97 kodu",C.us97[i]],["Yatırım cinsi",D.cins[C.cins[i]]],["Kapasite",C.kap[i]],["İstihdam",fmt(C.ist[i])],
+    ["Destek unsurları",fl.join(", ")],["Vergi indirimi",D.vi[C.vi[i]]],["Faiz desteği",D.faiz[C.faiz[i]]],["İthal makine (ABD$)",fmt(C.ith[i])],["Sabit yatırım (TL)",fmt(C.sab[i])],
+    ["Arazi / bina",[fmt(C.arazi[i]),fmt(C.bina[i])].join(" / ")],["İthal / yerli makine",[fmt(C.ithm[i]),fmt(C.yerm[i])].join(" / ")],["Diğer harcamalar",fmt(C.dig[i])],["Ekspertiz kurumu",D.eksp[C.eksp[i]]]];
+}
+function detail(i){
+  $("dT").textContent=C.firma[i]; $("dS").textContent=`Belge ${C.no[i]} · ${dstr(C.bt[i])}`;
+  $("dKv").innerHTML=fields(i).filter(([k,v])=>v&&String(v).replace(/[\s\/]/g,"")).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  $("dlg").showModal();
+}
+let dl=null;
+if("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
+async function exportCsv(){
+  const msg=$("dlMsg");
+  if(!RES.length){msg.textContent="Aktarılacak sonuç yok.";return}
+  const head=["Firma","Belge no","Belge tarihi","Başlama","Bitiş","İl","İlçe","Sektör","Yatırım cinsi","Kapasite","İstihdam","Sabit yatırım (TL)","İthal makine (ABD$)","Belge durumu","Destekler","Vergi indirimi","Faiz desteği","Sermaye türü","Adres"];
+  const q=v=>{v=v==null?"":String(v);return /[;"\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+  const lines=[head.join(";")];
+  for(const i of RES) lines.push([C.firma[i],C.no[i],dstr(C.bt[i]),dstr(C.bas[i]),dstr(C.bit[i]),D.il[C.il[i]],D.ilce[C.ilce[i]],D.sek[C.sek[i]],D.cins[C.cins[i]],C.kap[i],C.ist[i]??"",
+    C.sab[i]??"",C.ith[i]??"",D.dur[C.dur[i]],FL.filter((f,b)=>C.fl[i]&(1<<b)).join(", "),D.vi[C.vi[i]],D.faiz[C.faiz[i]],D.serm[C.serm[i]],C.adres[i]].map(q).join(";"));
+  const data=new TextEncoder().encode("\ufeff"+lines.join("\r\n"));
+  const name=`ytb_sorgu_${RES.length}_belge.csv`;
+  try{
+    if(dl){ await dl.save({filename:name,data}); msg.textContent=`${RES.length.toLocaleString("tr-TR")} belge aktarıldı.`; }
+    else { const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([data],{type:"text/csv"})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); msg.textContent="İndirildi."; }
+  }catch(e){ msg.textContent=e?.code==="declined"?"İndirme iptal edildi.":"İndirilemedi."; }
+}
+load().catch(e=>{$("loadMsg").textContent="Veri yüklenemedi: "+e.message});
+</script>
+</body>
+</html>
